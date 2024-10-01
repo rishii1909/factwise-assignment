@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Accordion } from "@/components/ui/accordion";
 
 import celebrities from "@/mock/celebrities.json";
@@ -72,9 +72,10 @@ export const CelebrityAccordion = () => {
         collapsible
         className="w-[480px] flex flex-col space-y-3 border-zinc-300"
       >
-        {filteredCelebritiesList.map((celebrity) => {
+        {filteredCelebritiesList.map((celebrity, index) => {
           return (
             <CelebrityAccordionItem
+              key={index}
               celebrity={celebrity}
               onEdit={handleCelebrityEdit}
               onDelete={handleCelebrityDelete}

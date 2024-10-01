@@ -97,7 +97,6 @@ export const CelebrityAccordionItem = ({
               <Label htmlFor="age">Age</Label>
               <CelebrityEditableField
                 isEditing={isEditing}
-                setIsEditing={setIsEditing}
                 value={`${age} year${age > 0 ? "s" : ""}`}
                 fieldType={CelebrityFieldTypes.input}
                 readOnly
@@ -108,7 +107,6 @@ export const CelebrityAccordionItem = ({
               <Label htmlFor="gender">Gender</Label>
               <CelebrityEditableField
                 isEditing={isEditing}
-                setIsEditing={setIsEditing}
                 value={gender}
                 onValueChange={(value) =>
                   updateCelebrityAttribute("gender", value)
@@ -121,7 +119,6 @@ export const CelebrityAccordionItem = ({
               <Label htmlFor="country">Country</Label>
               <CelebrityEditableField
                 isEditing={isEditing}
-                setIsEditing={setIsEditing}
                 value={country}
                 onChange={(e) =>
                   updateCelebrityAttribute("country", e.currentTarget.value)
@@ -133,7 +130,6 @@ export const CelebrityAccordionItem = ({
               <Label htmlFor="description">Description</Label>
               <CelebrityEditableField
                 isEditing={isEditing}
-                setIsEditing={setIsEditing}
                 value={description}
                 onChange={(e) =>
                   updateCelebrityAttribute("description", e.currentTarget.value)

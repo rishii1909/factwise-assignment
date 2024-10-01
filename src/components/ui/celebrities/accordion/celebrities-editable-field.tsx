@@ -1,18 +1,14 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Input, InputProps } from "../../input";
 import { Textarea, TextareaProps } from "../../textarea";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../../select";
 import { SelectProps } from "@radix-ui/react-select";
 import { capitalize } from "lodash";
-import clsx from "clsx";
 
 export enum CelebrityFieldTypes {
   input = "Input",
@@ -23,7 +19,6 @@ export enum CelebrityFieldTypes {
 interface CelebrityEditableFieldBaseProps {
   value: string;
   isEditing: boolean;
-  setIsEditing: (prop: boolean) => void;
   fieldType: CelebrityFieldTypes;
 }
 
@@ -58,24 +53,7 @@ type CelebrityEditableFieldProps =
   | CelebrityEditableSelectProps;
 
 export const CelebrityEditableField = (props: CelebrityEditableFieldProps) => {
-  const {
-    value,
-    isEditing,
-    setIsEditing,
-    fieldType,
-    placeholder,
-    ...componentProps
-  } = props;
-  const switchToEditingMode = () => !isEditing && setIsEditing(true);
-  const editingSwitchProps: DetailedHTMLProps<
-    HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > = {
-    onClick: switchToEditingMode,
-    onFocus: switchToEditingMode,
-  };
-
-  // if (!isEditing) return <div {...editingSwitchProps}>{value}</div>;
+  const { value, isEditing, fieldType, placeholder, ...componentProps } = props;
 
   const editableProps = !isEditing
     ? {
@@ -117,8 +95,8 @@ export const CelebrityEditableField = (props: CelebrityEditableFieldProps) => {
             <SelectValue {...(placeholder && { placeholder })} />
           </SelectTrigger>
           <SelectContent>
-            {options.map((option) => (
-              <SelectItem value={option.toString()}>
+            {options.map((option, index) => (
+              <SelectItem key={index} value={option.toString()}>
                 {capitalize(option)}
               </SelectItem>
             ))}
